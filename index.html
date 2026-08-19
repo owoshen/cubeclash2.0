@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cube Clash 2.0</title>
+    <style>
+        :root {
+            --bg: #09090e;
+            --panel-bg: #14141f;
+            --accent: #00d2ff; /* Neon Blue */
+            --accent-dim: rgba(0, 210, 255, 0.15);
+            --text-main: #ffffff;
+            --text-muted: #8e8e9f;
+            
+            /* Upgraded Neon Metallic Color Definitions */
+            --neon-gold: #ffd700;
+            --neon-gold-glow: rgba(255, 215, 0, 0.35);
+            --neon-silver: #e6e6e6;
+            --neon-silver-glow: rgba(230, 230, 230, 0.25);
+            --neon-bronze: #ff7733;
+            --neon-bronze-glow: rgba(255, 119, 51, 0.3);
+        }
+
+        body {
+            margin: 0;
+            font-family: system-ui, -apple-system, sans-serif;
+            background-color: var(--bg);
+            color: var(--text-main);
+            padding: 20px;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 650px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            padding: 20px 0;
+        }
+
+        .badge-competition {
+            background: #ff2a8520;
+            color: #ff2a85;
+            border: 1px solid #ff2a8540;
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: bold;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            margin-bottom: 15px;
+        }
+
+        /* 🌈 Animated RGB-Wave Logo Header Style */
+        .logo-title {
+            font-size: 3.2rem;
+            font-weight: 900;
+            letter-spacing: 2px;
+            margin: 0 0 10px 0;
+            background: linear-gradient(to right, #ff007f, #00ffff, #00ff00, #ffdd00, #ffcc00, #ff0000, #ff007f);
+            background-size: 300% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: rgbWaveTransform 4s linear infinite;
+        }
+
+        @keyframes rgbWaveTransform {
+            0% { background-position: 0% center; }
+            100% { background-position: 300% center; }
+        }
+
+        /* Centered Week Display Layout */
+        .week-bar {
+            background: #1e1e2f;
+            border-left: 4px solid var(--accent);
+            padding: 15px;
+            border-radius: 8px;
+            margin: 20px 0;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            text-align: center;
+            align-items: center;
+        }
+
+        .week-title-large {
+            font-size: 1.6rem;
+            font-weight: 800;
+            color: var(--accent);
+        }
+
+        .week-dates-sub {
+            font-size: 1rem;
+            color: var(--text-muted);
+        }
+                /* Clean Inline Wrap Navigation Pills */
+        .tab-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            margin: 25px 0;
+        }
+        
+        .tab-btn {
+            background: var(--panel-bg);
+            color: var(--text-main);
+            border: 2px solid #252538;
+            padding: 8px 16px;
+            border-radius: 30px;
+            font-weight: bold;
+            font-size: 0.95rem;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.2s ease;
+        }
+
+        .tab-btn .count {
+            background: #252538;
+            color: #ff2a85;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+
+        .tab-btn:hover {
+            border-color: var(--accent);
+        }
+
+        .tab-btn.active {
+            background: var(--accent-dim);
+            border-color: var(--accent);
+            color: var(--accent);
+            box-shadow: 0 0 12px var(--accent-dim);
+        }
+
+        .tab-btn.active .count {
+            background: var(--accent);
+            color: var(--bg);
+        }
+
+        .dynamic-desc {
+            text-align: center;
+            font-size: 1rem;
+            color: var(--text-muted);
+            margin: 20px auto;
+            max-width: 500px;
+            min-height: 40px;
+            font-style: italic;
+        }
+
+        /* 🥇 Clean 100% Even Height-Ranked Neon Podium */
+        .podium-container {
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            gap: 12px;
+            margin: 40px auto 25px auto;
+            max-width: 500px;
+            height: 250px;
+        }
+
+        .podium-column {
+            background: linear-gradient(180deg, #1c1c2e 0%, var(--panel-bg) 100%);
+            border-radius: 12px 12px 0 0;
+            flex: 1; /* Makes all 3 columns exactly identical in width */
+            width: 0; /* Prevents overflow content stretching columns */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+            padding: 15px 5px;
+            text-align: center;
+            box-sizing: border-box;
+        }
+
+        /* Neon Metallic Column Glows and Border Enhancements */
+        .podium-1st { 
+            height: 270px; 
+            border: 2px solid var(--neon-gold); 
+            box-shadow: 0 0 15px var(--neon-gold-glow);
+        }
+        .podium-2nd { 
+            height: 230px; 
+            border: 2px solid var(--neon-silver); 
+            box-shadow: 0 0 12px var(--neon-silver-glow);
+        }
+        .podium-3rd { 
+            height: 200px; 
+            border: 2px solid var(--neon-bronze); 
+            box-shadow: 0 0 12px var(--neon-bronze-glow);
+        }
+
+        .podium-column .cuber-info {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 2px;
+        }
+
+        .podium-column .medal {
+            font-size: 1.8rem;
+        }
+
+        .podium-column .name {
+            font-weight: bold;
+            font-size: 0.95rem;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            width: 90%;
+            color: var(--text-main);
+        }
+
+        .podium-column .time-avg {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+        }
+
+        .podium-column .time-val {
+            font-size: 1.2rem;
+            font-weight: 800;
+            color: var(--text-main);
+        }
+
+        .podium-column .placement-num {
+            font-size: 3rem;
+            font-weight: 900;
+            line-height: 1;
+        }
+
+        .podium-1st .placement-num { color: var(--neon-gold); text-shadow: 0 0 8px var(--neon-gold-glow); }
+        .podium-2nd .placement-num { color: var(--neon-silver); text-shadow: 0 0 8px var(--neon-silver-glow); }
+        .podium-3rd .placement-num { color: var(--neon-bronze); text-shadow: 0 0 8px var(--neon-bronze-glow); }
+                /* Split Statistics Cards Grid Layout */
+        .stats-block-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-bottom: 35px;
+        }
+
+        .stat-card {
+            background: #141424;
+            border: 1px dashed #31314d;
+            border-radius: 10px;
+            padding: 12px;
+            text-align: center;
+        }
+
+        .stat-card-label {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: var(--text-muted);
+            margin-bottom: 4px;
+        }
+
+        .stat-card-value {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #00bcff;
+        }
+
+        /* Leaderboard Panel Layout */
+        .leaderboard-panel {
+            background: var(--panel-bg);
+            border: 1px solid #222235;
+            border-radius: 12px;
+            overflow: hidden;
+            margin-bottom: 40px;
+        }
+
+        .table-row {
+            display: grid;
+            grid-template-columns: 80px 1fr 100px;
+            padding: 16px 20px;
+            align-items: center;
+            border-bottom: 1px solid #1c1c2e;
+        }
+
+        .table-row:last-child {
+            border-bottom: none;
+        }
+
+        .table-header {
+            background: #1a1a2a;
+            font-weight: bold;
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            letter-spacing: 1px;
+            color: var(--text-muted);
+            padding: 12px 20px;
+        }
+
+        .row-rank {
+            font-weight: 900;
+            color: var(--text-muted);
+            font-size: 1.1rem;
+        }
+
+        .row-name {
+            font-weight: 600;
+        }
+
+        .row-time {
+            font-weight: 700;
+            text-align: right;
+            font-family: monospace;
+            font-size: 1.1rem;
+        }
+
+        /* Neon Leaderboard Row Colors */
+        .rank-top1 .row-rank { font-size: 1.7rem; color: var(--neon-gold); }
+        .rank-top1 .row-name { font-size: 1.25rem; color: var(--neon-gold); }
+        .rank-top1 .row-time { font-size: 1.4rem; color: var(--neon-gold); }
+
+        .rank-top2 .row-rank { font-size: 1.5rem; color: var(--neon-silver); }
+        .rank-top2 .row-name { font-size: 1.15rem; color: var(--neon-silver); }
+        .rank-top2 .row-time { font-size: 1.3rem; color: var(--neon-silver); }
+
+        .rank-top3 .row-rank { font-size: 1.35rem; color: var(--neon-bronze); }
+        .rank-top3 .row-name { font-size: 1.1rem; color: var(--neon-bronze); }
+        .rank-top3 .row-time { font-size: 1.2rem; color: var(--neon-bronze); }
+
+        .scramble-box {
+            background: #10101a;
+            border: 1px solid #252538;
+            border-radius: 12px;
+            padding: 20px;
+            margin: 30px 0;
+        }
+
+        .scramble-title {
+            color: var(--accent);
+            font-weight: bold;
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+        }
+
+        .scramble-text {
+            background: #06060a;
+            padding: 15px;
+            border-radius: 8px;
+            font-family: monospace;
+            font-size: 1.05rem;
+            letter-spacing: 0.5px;
+            white-space: pre-line;
+            border-left: 4px solid var(--accent);
+            overflow-x: auto;
+        }
+
+        .info-card {
+            background: #14141f;
+            border: 1px solid #222235;
+            border-radius: 12px;
+            padding: 25px;
+            margin-top: 40px;
+        }
+
+        .info-title {
+            font-size: 1.3rem;
+            font-weight: bold;
+            margin-bottom: 20px;
+            color: #00bcff;
+        }
+
+        .rule-step {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .rule-step:last-child {
+            margin-bottom: 0;
+        }
+
+        .step-num {
+            background: #00bcff20;
+            color: #00bcff;
+            font-weight: bold;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            font-size: 0.9rem;
+        }
+
+        .step-text {
+            font-size: 0.95rem;
+            color: #d1d1e0;
+        }
+
+        .past-link {
+            text-align: center;
+            margin-top: 30px;
+            font-size: 0.9rem;
+        }
+
+        .past-link a {
+            color: var(--text-muted);
+            text-decoration: underline;
+        }
+        
+        .past-link a:hover {
+            color: var(--accent);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="badge-competition">🏆 Community Competition</div>
+            <h1 class="logo-title">CUBE CLASH 2.0</h1>
+            <p style="color: var(--text-muted); margin: 0;">Every week, one set of scrambles per event, the whole community racing the same solves. Post your times and climb the leaderboard!</p>
+            
+            <div class="week-bar">
+                <div class="week-title-large"> Week 5</div>
+                <div class="week-dates-sub">August 18 to August 24, 2026</div>
+                <div class="week-dates-sub" style="font-weight: bold; color: #ff2a85;">Closes at August 24</div>
+            </div>
+        </header>
+
+        <!-- SELECTION PILL TABS WITH AUTOMATED DATA IDS -->
+        <nav class="tab-grid">
+            <button class="tab-btn active" id="btn-3x3" onclick="switchEvent('3x3')">3x3 <span class="count" id="count-3x3">0</span></button>
+            <button class="tab-btn" id="btn-2x2" onclick="switchEvent('2x2')">2x2 <span class="count" id="count-2x2">0</span></button>
+            <button class="tab-btn" id="btn-4x4" onclick="switchEvent('4x4')">4x4 <span class="count" id="count-4x4">0</span></button>
+            <button class="tab-btn" id="btn-oh" onclick="switchEvent('oh')">3x3 OH <span class="count" id="count-oh">0</span></button>
+            <button class="tab-btn" id="btn-rotating" onclick="switchEvent('rotating')">5x5 <span class="count" id="count-rotating">0</span></button>
+        </nav>
+
+        <div class="dynamic-desc" id="event-description">Loading details...</div>
+                <!-- INTERACTIVE DISPLAY HUB AREA -->
+        <div id="event-display-area">
+            
+            <!-- THE CORRECT HIGH-VISIBILITY 3D WINNERS PODIUM -->
+            <div class="podium-container">
+                <!-- 2nd Place Column -->
+                <div class="podium-column podium-2nd">
+                    <div class="medal">🥈</div>
+                    <div class="cuber-info">
+                        <div class="name" id="podium-2-name">Loading...</div>
+                        <div class="time-avg">Ao5</div>
+                        <div class="time-val" id="podium-2-time">--.--s</div>
+                    </div>
+                    <div class="placement-num">2</div>
+                </div>
+                
+                <!-- 1st Place Column -->
+                <div class="podium-column podium-1st">
+                    <div class="medal">🥇</div>
+                    <div class="cuber-info">
+                        <div class="name" id="podium-1-name">Loading...</div>
+                        <div class="time-avg">Ao5</div>
+                        <div class="time-val" id="podium-1-time">--.--s</div>
+                    </div>
+                    <div class="placement-num">1</div>
+                </div>
+                
+                <!-- 3rd Place Column -->
+                <div class="podium-column podium-3rd">
+                    <div class="medal">🥉</div>
+                    <div class="cuber-info">
+                        <div class="name" id="podium-3-name">Loading...</div>
+                        <div class="time-avg">Ao5</div>
+                        <div class="time-val" id="podium-3-time">--.--s</div>
+                    </div>
+                    <div class="placement-num">3</div>
+                </div>
+            </div>
+
+            <!-- COMMUNITY STATS TICKER PANEL -->
+            <div class="stats-block-wrapper" id="stats-banner">
+                <div class="stat-card">
+                    <div class="stat-card-label">Total Solvers</div>
+                    <div class="stat-card-value" id="stat-solves">0 Solvers</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-card-label">#1 Fastest</div>
+                    <div class="stat-card-value" id="stat-sub">--.--s</div>
+                </div>
+            </div>
+
+            <!-- LEADERBOARD PANEL -->
+            <div class="leaderboard-panel">
+                <div class="table-row table-header">
+                    <div>Rank</div>
+                    <div>Solver</div>
+                    <div style="text-align: right;">ao5</div>
+                </div>
+                <div id="leaderboard-rows">
+                    <!-- Dynamic rows populate here cleanly from JavaScript -->
+                </div>
+            </div>
+
+            <!-- OFFICIAL SCRAMBLES BOX -->
+            <div class="scramble-box">
+                <div class="scramble-title" id="scramble-title-label">Official Scrambles</div>
+                <div class="scramble-text" id="scramble-content-area">Loading scrambles...</div>
+            </div>
+
+        </div>
+
+        <!-- HOW CUBE CLASH WORKS PANEL -->
+        <section class="info-card">
+            <div class="info-title">How Cube Clash works</div>
+            
+            <div class="rule-step">
+                <div class="step-num">1</div>
+                <div class="step-text"><strong>Pick your events.</strong> Nine of them this week, from 2x2 up to 7x7, plus one-handed, Megaminx and Pyraminx. Enter as many or as few as you like.</div>
+            </div>
+            <div class="rule-step">
+                <div class="step-num">2</div>
+                <div class="step-text"><strong>Check the format on the scramble card.</strong> It tells you how many solves that event needs.</div>
+            </div>
+            <div class="rule-step">
+                <div class="step-num">3</div>
+                <div class="step-text"><strong>Grab that event's scrambles</strong> (right here, or from the Academy post).</div>
+            </div>
+            <div class="rule-step">
+                <div class="step-num">4</div>
+                <div class="step-text"><strong>Solve them all on any timer.</strong> Most events are average of 5: drop your best and worst, average the middle 3.</div>
+            </div>
+            <div class="rule-step">
+                <div class="step-num">5</div>
+                <div class="step-text"><strong>6x6 and 7x7 are mean of 3.</strong> Only 3 solves, and you average all three. Nothing gets dropped, so every solve counts.</div>
+            </div>
+            <div class="rule-step">
+                <div class="step-num">6</div>
+                <div class="step-text"><strong>Post your times in the Academy thread</strong> before the Monday deadline. Say which event each one is.</div>
+            </div>
+            <div class="rule-step">
+                <div class="step-num">7</div>
+                <div class="step-text"><strong>Champions are crowned Monday night</strong>, and the new week starts right after.</div>
+            </div>
+        </section>
+
+        <!-- PAST LEADERBOARD NAVIGATION LINK -->
+        <div class="past-link">
+            <a href="#">‹ Past leaderboards</a>
+        </div>
+    </div>
+    <script>
+        // Database object containing all weekly times, custom messages, and scrambles
+        const eventData = {
+            '3x3': {
+                desc: "The main event. Solve all 5, drop your best and worst, average the middle 3.",
+                scrambleTitle: "3x3 Scrambles",
+                scrambles: "1. U' R2 B2 U2 L2 D R2 F2 U' B2 U' R' B' R' B2 D2 F L' D' U2 R'\n2. D2 R2 B2 U2 F2 U L2 D' B2 R2 F2 R' B2 F L2 U2 F' D B U R2\n3. B2 U L2 D F2 U B2 D2 F2 L2 F2 R' B' D' R B2 F2 R2 B F' R\n4. R B2 R2 F2 D' F2 U B2 U L2 D2 L' B U2 L B' D2 F U B F\n5. F2 R2 D2 B2 U L2 F2 U L2 U B2 R' D' F U L2 B' D B F L",
+                totalSolves: 0,
+                subCountText: "--.--s",
+                leaderboard: [
+                    { name: "---", time: "--.--s" },
+                    { name: "---", time: "--.--s" },
+                    { name: "---", time: "--.--s" }
+                    
+                ]
+            },
+            '2x2': {
+                desc: "Fast and intense. Same rule apply.",
+                scrambleTitle: "2x2 Scrambles",
+                scrambles: "1. U R' F U2 F' U F2 U' R'\n2. F' R U2 R' F U' F U2 R2\n3. U' R2 F U' F2 R' U2 R U'\n4. R F' U2 F' R2 U R' F U'\n5. R2 U' F2 R' U R F' U2 F",
+                totalSolves: 0,
+                subCountText: "--.--s",
+                leaderboard: [
+                    { name: "---", time: "--.--s" },
+                    { name: "---", time: "--.--s" },
+                    { name: "---", time: "--.--s" }
+                ]
+            },
+            '4x4': {
+                desc: "Same rules apply.",
+                scrambleTitle: "4x4 Scrambles",
+                scrambles: "1. Rw2 Uw2 U2 D2 R2 D L' Rw Fw2 F' B' U L Rw' Fw F' Rw2 D' F2 Rw D2 B Uw' L' Fw2 B F' L' Rw2 Fw' U2 Fw' D' B' U L' U B2 L' Rw\n2. U' D' B R2 U Fw L F' D Fw' F' Rw2 D' B' R' F Rw Uw U' Fw2 D2 Fw' Uw' U B' L2 Uw Rw2 F' Uw2 B Uw' F' D U L' B2 Fw' \n3. L2 Fw Rw' R Uw L2 Uw2 Rw2 B' F' Fw2 D L' B F2 Uw2 F' Rw' F' Uw Fw F U D2 Uw Rw' D' B2 Uw B2 Rw' U2 Uw F L B2 R Rw' Uw2 U F'\n4. B' U2 F' R2 Fw' D2 B' D2 F Uw' L B' Rw2 B F R Fw' Uw Fw L B2 F2 U2 Fw' L R F U D' Uw Rw' U2 R F U L' B\n5. Rw Uw' Rw2 B' Fw2 F' D U2 R2 F L' U' Uw' Fw2 Rw R2 F2 B' Rw' L F2 L2 D' R U F Uw F2 L R' F' Uw2 D2 R Rw2 Fw2 F D' Rw2 B2",
+                totalSolves: 0,
+                subCountText: "--.--s",
+                leaderboard: [
+                    { name: "---", time: "--.--s" },
+                    { name: "---", time: "--.--s" },
+                    { name: "---", time: "--.--s" }
+                ]
+            },
+            'oh': {
+                desc: "One hand only. Same rules apply.",
+                scrambleTitle: "3x3 One-Handed Scrambles",
+                scrambles: "1. D L2 D F2 R2 F2 U L2 U F2 R2 F' D2 L' D2 R2 B L R F U'\n2. R2 F2 D2 F L2 B L2 D2 B L2 F D B U L U2 B L' B2 L D\n3. F2 D' B2 L2 B2 U F2 D' L2 R2 U2 B L2 D F2 L D U B' D R2\n4. F2 D2 L2 B' D2 R2 F' L2 B F2 L2 R' D U2 L2 B L' F2 R D' U2\n5. D B2 F2 D R2 F2 L2 D2 B2 U B2 L D' R B U' F D B' U' L2",
+                totalSolves: 0,
+                subCountText: "--.--s",
+                leaderboard: [
+                    { name: "---", time: "--.--s" },
+                    { name: "---", time: "--.--s" },
+                    { name: "---", time: "--.--s" }
+                ]
+            },
+            'rotating': {
+                desc: "Rotation events, change for every week. This week: 5x5",
+                scrambleTitle: "5x5 Scarmbles",
+                scrambles: "1. Lw F' B2 Lw B Uw' Rw' Uw R' Uw' Bw2 L2 Lw' Uw Dw2 L' Lw2 B D Rw D F' Bw2 R Rw2 F Bw' Dw B' Uw2 Lw2 Uw' B2 U2 B' L Fw' Bw R U2 D Bw2 Rw' Bw2 L Fw Rw' Fw' Lw' Uw B' Dw Rw2 U' Rw\n2. B2 L B2 D' B L2 Uw2 B2 R Dw L F' Lw2 Dw2 B2 Lw2 Rw2 D' Lw Dw' F R D2 Dw F2 Uw Bw R2 Fw2 Rw2 Uw Rw2 Fw2 Dw R B D Bw Uw' Lw Rw' B U2 Uw Dw2 B' Dw' Rw' U2 F2 R Bw' R' Fw Bw Rw2\n3. Bw' Lw' R2 B L Dw2 R2 Uw2 L2 D Rw' Dw L2 Dw' L2 R' U Fw' L Fw Uw2 R2 Rw' Fw Uw2 Dw R' U2 Fw Lw' U' Lw Rw U2 Uw2 L F' Rw B2 Lw' Dw R' Fw' U Dw2 Lw Dw' Bw' Rw' D' Bw2 Lw2\n4. Lw D2 L2 Uw' R Bw L2 R' Rw Dw' F' Lw2 R D' Dw2 Rw2 F D2 Rw' Uw L Uw' D F' Bw U2 R' F2 R2 Bw2 Uw L' U2 Bw2 U' Bw2 Rw2 Uw2 Fw' Uw D' F Uw L R' Fw2 U2 Bw Uw2 F' L\n5.  D' B2 Bw' U2 Uw2 Bw2 L D2 Rw2 B' Lw2 Uw Lw2 Dw2 Lw' Rw D Bw' Rw' D L' Bw Uw Dw' Bw2 Lw' Dw2 Fw' R Bw2 Uw2 Dw Rw' Bw' Dw R' D' Bw Lw2 Uw' Bw' Dw2 F2 Bw Rw2 U2 L",
+                totalSolves: 0,
+                subCountText: "--.--s",
+                leaderboard: [
+                    { name: "---", time: "--.--s" },
+                    { name: "---", time: "--.--s" },
+                    { name: "---", time: "--.--s" }
+                ]
+            }
+        };
+
+        // 📊 AUTOMATION FEATURE: Automatically detects data count on startup
+        function updateTabParticipantCounters() {
+            Object.keys(eventData).forEach(eventId => {
+                const totalParticipants = eventData[eventId].leaderboard.length;
+                const counterElement = document.getElementById('count-' + eventId);
+                if (counterElement) {
+                    counterElement.innerText = totalParticipants;
+                }
+            });
+        }
+
+        function switchEvent(eventId) {
+            // Step A: Toggle Tab Button Active Classes
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+            const activeBtn = document.getElementById('btn-' + eventId) || event.currentTarget;
+            if (activeBtn) activeBtn.classList.add('active');
+
+            const data = eventData[eventId];
+            if (!data) return;
+
+            // Step B: Update Description Text
+            document.getElementById('event-description').innerHTML = data.desc;
+
+            // Step C: Update Scrambles Block
+            document.getElementById('scramble-title-label').innerText = data.scrambleTitle;
+            document.getElementById('scramble-content-area').innerText = data.scrambles;
+
+            // Step D: Update Stats Cards Individually
+            document.getElementById('stat-solves').innerText = `${data.totalSolves} Solves`;
+            document.getElementById('stat-sub').innerText = data.subCountText;
+
+            // Step E: Safely Map the Top 3 Community Members onto the 3D Podium Towers
+            const p1 = data.leaderboard[0] || { name: "-", time: "--.--s" };
+            const p2 = data.leaderboard[1] || { name: "-", time: "--.--s" };
+            const p3 = data.leaderboard[2] || { name: "-", time: "--.--s" };
+
+            document.getElementById('podium-1-name').innerText = p1.name;
+            document.getElementById('podium-1-time').innerText = p1.time;
+            document.getElementById('podium-2-name').innerText = p2.name;
+            document.getElementById('podium-2-time').innerText = p2.time;
+            document.getElementById('podium-3-name').innerText = p3.name;
+            document.getElementById('podium-3-time').innerText = p3.time;
+
+            // Step F: Rebuild Leaderboard List (Pure Medals for Top 3, Clean Numbers for rest)
+            const listArea = document.getElementById('leaderboard-rows');
+            listArea.innerHTML = "";
+
+            data.leaderboard.forEach((player, index) => {
+                const rankNum = index + 1;
+                let topClass = "";
+                let medalBadge = `${rankNum}`;
+
+                if (rankNum === 1) { topClass = "rank-top1"; medalBadge = "🥇"; }
+                else if (rankNum === 2) { topClass = "rank-top2"; medalBadge = "🥈"; }
+                else if (rankNum === 3) { topClass = "rank-top3"; medalBadge = "🥉"; }
+
+                const rowHtml = `
+                    <div class="table-row ${topClass}">
+                        <div class="row-rank" style="display:flex; align-items:center; font-size:1.4rem;">${medalBadge}</div>
+                        <div class="row-name">${player.name}</div>
+                        <div class="row-time">${player.time}</div>
+                    </div>
+                `;
+                listArea.innerHTML += rowHtml;
+            });
+        }
+
+        // Initialize dynamic counters and active layouts immediately on startup
+        updateTabParticipantCounters();
+        switchEvent('3x3');
+    </script>
+</body>
+</html>
