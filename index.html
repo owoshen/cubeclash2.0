@@ -427,9 +427,9 @@
             <p style="color: var(--text-muted); margin: 0;">Every week, one set of scrambles per event, the whole community racing the same solves. Post your times and climb the leaderboard!</p>
             
             <div class="week-bar">
-                <div class="week-title-large"> Week 5</div>
-                <div class="week-dates-sub">August 18 to August 24, 2026</div>
-                <div class="week-dates-sub" style="font-weight: bold; color: #ff2a85;">End at August 24</div>
+                <div class="week-title-large"> Week 6?</div>
+                <div class="week-dates-sub">September 14 to September 20, 2026</div>
+                <div class="week-dates-sub" style="font-weight: bold; color: #ff2a85;">End at September 20</div>
             </div>
         </header>
 
@@ -439,7 +439,7 @@
             <button class="tab-btn" id="btn-2x2" onclick="switchEvent('2x2')">2x2 <span class="count" id="count-2x2">0</span></button>
             <button class="tab-btn" id="btn-4x4" onclick="switchEvent('4x4')">4x4 <span class="count" id="count-4x4">0</span></button>
             <button class="tab-btn" id="btn-oh" onclick="switchEvent('oh')">3x3 OH <span class="count" id="count-oh">0</span></button>
-            <button class="tab-btn" id="btn-rotating" onclick="switchEvent('rotating')">5x5 <span class="count" id="count-rotating">0</span></button>
+            <button class="tab-btn" id="btn-rotating" onclick="switchEvent('rotating')">Clock <span class="count" id="count-rotating">0</span></button>
         </nav>
 
         <div class="dynamic-desc" id="event-description">Loading details...</div>
@@ -559,99 +559,50 @@
             '3x3': {
                 desc: "The main event. Solve all 5, drop your best and worst, average the middle 3.",
                 scrambleTitle: "3x3 Scrambles",
-                scrambles: "1. U' R2 B2 U2 L2 D R2 F2 U' B2 U' R' B' R' B2 D2 F L' D' U2 R'\n2. D2 R2 B2 U2 F2 U L2 D' B2 R2 F2 R' B2 F L2 U2 F' D B U R2\n3. B2 U L2 D F2 U B2 D2 F2 L2 F2 R' B' D' R B2 F2 R2 B F' R\n4. R B2 R2 F2 D' F2 U B2 U L2 D2 L' B U2 L B' D2 F U B F\n5. F2 R2 D2 B2 U L2 F2 U L2 U B2 R' D' F U L2 B' D B F L",
-                totalSolves: 20,
-                subCountText: "4.67s",
+                scrambles: "1. R2 U2 B2 D' F2 D' L2 B2 D' B2 D2 L F L R' D R U B2 F\n2. B2 D2 R2 U2 B' D2 F' R2 B U2 F D2 R D' L B' R D R F D'\n3. R2 D B2 U' F2 U L2 U' L2 B2 U' L U' B L2 U R2 B' L' R' F'\n4. U2 F L2 D R2 U F2 U' L2 D F2 D' U2 L' D2 R2 B L R' U R\n5. L2 B2 F2 U R2 D B2 R2 U B2 U F L U' R2 U R F' D2 B' U'",
+                totalSolves: 1,
+                subCountText: "20.23s",
                 leaderboard: [
-                    { name: "Faiz Ahmed", time: "4.67s" },
-                    { name: "Manav Patel", time: "7.71s" },
-                    { name: "Noah Baig", time: "8.93s" },
-                    { name: "Angus Shen", time: "10.01s" },
-                    { name: "Emmahuel Eserio", time: "12.18s" },
-                    { name: "Adony Marak", time: "12.21s" },
-                    { name: "Truce Broadhead", time: "12.35s" },
-                    { name: "Nondinee Biswas", time: "12.52s" },
-                    { name: "Liam Walton", time: "13.38s" },
-                    { name: "Miles Mwithukia", time: "13.92s" },
-                    { name: "Daniel Pop", time: "14.37s" },
-                    { name: "Nathan Nolet", time: "14.63s" },
-                    { name: "Ragea Cuber", time: "18.02s" },
-                    { name: "Hamza Mujmil mukari", time: "18.08s" },
-                    { name: "Jd Gernandiso", time: "21.22s" },
-                    { name: "Miras Lol", time: "22.05s" },
-                    { name: "Ggbg Official", time: "22.38s" },
-                    { name: "Ayanna Ferrell", time: "23.28s" },
-                    { name: "Mohammed Husein Alossman", time: "24.88s" },
-                    { name: "Ryan Raynard", time: "25.57s" },
+                    { name: "Ragea Cuber", time: "20.23s" },
                 ]
             },
             '2x2': {
                 desc: "Fast and intense. Same rule apply.",
                 scrambleTitle: "2x2 Scrambles",
-                scrambles: "1. U R' F U2 F' U F2 U' R'\n2. F' R U2 R' F U' F U2 R2\n3. U' R2 F U' F2 R' U2 R U'\n4. R F' U2 F' R2 U R' F U'\n5. R2 U' F2 R' U R F' U2 F",
-                totalSolves: 10,
-                subCountText: "2.61s",
+                scrambles: "1. F2 R F' R U' R2 F' R2 U'\n2. F' U R2 U' R U' R F2 U'\n3. U' R2 F' U F' U2 F' U R2\n4. R2 U2 R U F U2 F' R' U'\n5. R U F U F' U F2 U R2",
+                totalSolves: 0,
+                subCountText: "???s",
                 leaderboard: [
-                    { name: "Manav Patel", time: "2.61s" },
-                    { name: "Noah Baig", time: "2.90s" },
-                    { name: "Truce Broadhead", time: "3.25s" },
-                    { name: "Liam Walton", time: "3.40s" },
-                    { name: "Angus Shen", time: "3.90s" },
-                    { name: "Miles Mwithukia", time: "5.78s" },
-                    { name: "Ayanna Ferrell", time: "6.16s" },
-                    { name: "Nathan Nolet", time: "6.79s" },
-                    { name: "Ryan Raynard", time: "7.43s" },
-                    { name: "Ggbg Official", time: "8.91s" },
+                    
                 ]
             },
             '4x4': {
                 desc: "Same rules apply.",
                 scrambleTitle: "4x4 Scrambles",
-                scrambles: "1. Rw2 Uw2 U2 D2 R2 D L' Rw Fw2 F' B' U L Rw' Fw F' Rw2 D' F2 Rw D2 B Uw' L' Fw2 B F' L' Rw2 Fw' U2 Fw' D' B' U L' U B2 L' Rw\n2. U' D' B R2 U Fw L F' D Fw' F' Rw2 D' B' R' F Rw Uw U' Fw2 D2 Fw' Uw' U B' L2 Uw Rw2 F' Uw2 B Uw' F' D U L' B2 Fw' \n3. L2 Fw Rw' R Uw L2 Uw2 Rw2 B' F' Fw2 D L' B F2 Uw2 F' Rw' F' Uw Fw F U D2 Uw Rw' D' B2 Uw B2 Rw' U2 Uw F L B2 R Rw' Uw2 U F'\n4. B' U2 F' R2 Fw' D2 B' D2 F Uw' L B' Rw2 B F R Fw' Uw Fw L B2 F2 U2 Fw' L R F U D' Uw Rw' U2 R F U L' B\n5. Rw Uw' Rw2 B' Fw2 F' D U2 R2 F L' U' Uw' Fw2 Rw R2 F2 B' Rw' L F2 L2 D' R U F Uw F2 L R' F' Uw2 D2 R Rw2 Fw2 F D' Rw2 B2",
-                totalSolves: 7,
-                subCountText: "34.18s",
+                scrambles: "1. R2 F2 U' L2 D2 L2 U2 F2 D' B2 D2 R F L' U' D B U L' D2 Rw2 B' Rw2 U2 Fw2 U2 R' F2 Uw2 R' Uw2 L2 Uw R D2 L B2 Fw' R' L2 Fw' R Uw R\n2. L' D L2 U2 L' B2 L U2 B2 D2 F2 B2 R' U2 D F' U' R' F2 L' D Uw2 Fw2 Rw2 B Uw2 L U2 B R L Rw2 B' Uw' L2 F' U2 L D2 Rw Uw' L2 Uw B' Rw B2 \n3. R' U' D' L2 D L' D F2 L2 F U2 D2 R2 U2 F2 U2 B' L2 B2 U Rw2 U' F2 L' Uw2 B2 D' Rw2 Uw2 Fw2 R B' D' B Fw' U2 D Uw Rw2 B Uw Rw D' F\n4. D2 B U2 F B L2 B U2 B U' D B' L' U F' L' B' L B2 Uw2 R' F R' L Uw2 Fw2 R F' Rw2 U2 B2 Uw B2 Rw2 Uw' R2 Rw' B' Uw B2 R2 Rw2 F2\n5. U2 F' L2 B' U' F' R' D2 B2 L2 F2 D B2 U F2 B2 R2 D F2 L' Rw2 Fw2 D' B Uw2 F2 L2 Fw2 U' B2 Rw2 U' F' Rw' D2 B L Rw' Uw Rw Uw' Fw' L' F2 Rw",
+                totalSolves: 0,
+                subCountText: "???s",
                 leaderboard: [
-                    { name: "Noah Baig", time: "34.18s" },
-                    { name: "Manav Patel", time: "46.49s" },
-                    { name: "Liam Walton", time: "46.96s" },
-                    { name: "Angus Shen", time: "56.98s" },
-                    { name: "Miles Mwithukia", time: "59.52s" },
-                    { name: "Ayanna Ferrell", time: "1m35.76s" },
-                    { name: "Ragea Cuber", time: "1m46.32s" },
+                   
                 ]
             },
             'oh': {
                 desc: "3x3 but one hand only. Same rules apply.",
                 scrambleTitle: "3x3 One-Handed Scrambles",
-                scrambles: "1. D L2 D F2 R2 F2 U L2 U F2 R2 F' D2 L' D2 R2 B L R F U'\n2. R2 F2 D2 F L2 B L2 D2 B L2 F D B U L U2 B L' B2 L D\n3. F2 D' B2 L2 B2 U F2 D' L2 R2 U2 B L2 D F2 L D U B' D R2\n4. F2 D2 L2 B' D2 R2 F' L2 B F2 L2 R' D U2 L2 B L' F2 R D' U2\n5. D B2 F2 D R2 F2 L2 D2 B2 U B2 L D' R B U' F D B' U' L2",
-                totalSolves: 9,
-                subCountText: "17.30s",
+                scrambles: "1. R2 D2 R2 U2 R2 F2 R2 F2 U R2 F2 L' F U L' D2 R' D2 B R D2\n2. L D' R' F2 D2 F2 L' D2 R' B2 D2 F2 D2 U2 F R' B2 L' U F' D'\n3. F' R2 U' B' L B2 U B' U2 F D2 L2 U2 F2 R2 L2 U2 B' D2 L B'\n4. U2 F2 U2 L2 U2 F D2 R2 B' L2 F2 L D' B F U L2 F' R' F2 U'\n5. F2 R2 F2 D2 L F2 L' B2 R2 B2 U2 R D' B R' D B' D' R U2 R",
+                totalSolves: 1,
+                subCountText: "49.42s",
                 leaderboard: [
-                    { name: "Truce Broadhead", time: "17.30s" },
-                    { name: "Manav Patel", time: "18.69s" },
-                    { name: "Liam Walton", time: "19.06s" },
-                    { name: "Angus Shen", time: "19.89s" },
-                    { name: "Noah Baig", time: "21.15s" },
-                    { name: "Nondinee Biswas", time: "26.97s" },
-                    { name: "Ragea Cuber", time: "50.99s" },
-                    { name: "Ryan Raynard", time: "1m03.06s" },
-                    { name: "Ayanna Ferrell", time: "1m03.43s" },
+                    { name: "Ragea Cuber", time: "49.42s" },
                 ]
             },
             'rotating': {
                 desc: "Rotation events, change for every week. This week: 5x5",
-                scrambleTitle: "5x5 Scarmbles",
-                scrambles: "1. Lw F' B2 Lw B Uw' Rw' Uw R' Uw' Bw2 L2 Lw' Uw Dw2 L' Lw2 B D Rw D F' Bw2 R Rw2 F Bw' Dw B' Uw2 Lw2 Uw' B2 U2 B' L Fw' Bw R U2 D Bw2 Rw' Bw2 L Fw Rw' Fw' Lw' Uw B' Dw Rw2 U' Rw\n2. B2 L B2 D' B L2 Uw2 B2 R Dw L F' Lw2 Dw2 B2 Lw2 Rw2 D' Lw Dw' F R D2 Dw F2 Uw Bw R2 Fw2 Rw2 Uw Rw2 Fw2 Dw R B D Bw Uw' Lw Rw' B U2 Uw Dw2 B' Dw' Rw' U2 F2 R Bw' R' Fw Bw Rw2\n3. Bw' Lw' R2 B L Dw2 R2 Uw2 L2 D Rw' Dw L2 Dw' L2 R' U Fw' L Fw Uw2 R2 Rw' Fw Uw2 Dw R' U2 Fw Lw' U' Lw Rw U2 Uw2 L F' Rw B2 Lw' Dw R' Fw' U Dw2 Lw Dw' Bw' Rw' D' Bw2 Lw2\n4. Lw D2 L2 Uw' R Bw L2 R' Rw Dw' F' Lw2 R D' Dw2 Rw2 F D2 Rw' Uw L Uw' D F' Bw U2 R' F2 R2 Bw2 Uw L' U2 Bw2 U' Bw2 Rw2 Uw2 Fw' Uw D' F Uw L R' Fw2 U2 Bw Uw2 F' L\n5.  D' B2 Bw' U2 Uw2 Bw2 L D2 Rw2 B' Lw2 Uw Lw2 Dw2 Lw' Rw D Bw' Rw' D L' Bw Uw Dw' Bw2 Lw' Dw2 Fw' R Bw2 Uw2 Dw Rw' Bw' Dw R' D' Bw Lw2 Uw' Bw' Dw2 F2 Bw Rw2 U2 L",
-                totalSolves: 7,
-                subCountText: "1m07.44s",
+                scrambleTitle: "Clock Scarmbles",
+                scrambles: "1. UR5+ DR2- DL5- UL4- U5+ R6+ D1+ L3+ ALL5- y2 U5+ R3- D4+ L3- ALL3-\n2. UR2+ DR4+ DL2+ UL1- U5+ R6+ D0+ L6+ ALL3+ y2 U4+ R4- D1+ L2- ALL0+\n3. UR5- DR4+ DL3+ UL4- U3+ R5+ D6+ L1+ ALL5- y2 U5+ R5- D4+ L6+ ALL0+\n4. UR1+ DR1- DL4+ UL6+ U4- R3- D2+ L4+ ALL4+ y2 U5+ R5- D3+ L4- ALL5-\n5. UR1- DR4+ DL3- UL1+ U1+ R3+ D1+ L1+ ALL3+ y2 U5+ R3- D1- L0+ ALL1+",
+                totalSolves: 0,
+                subCountText: "???s",
                 leaderboard: [
-                      { name: "Noah Baig", time: "1m07.44s" },
-                      { name: "Liam Walton", time: "1m54.75s" },
-                      { name: "Miles Mwithukia", time: "2m03.54s" },
-                      { name: "Angus Shen", time: "2m54.45s" },
-                      { name: "Ryan Raynard", time: "3m00.64s"},
-                      { name: "Ayanna Ferrell", time: "4m00.17s"},
-                      { name: "Ragea Cuber", time: "4m14.98s" },
                 ]
             }
         };
